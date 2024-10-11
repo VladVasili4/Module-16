@@ -24,7 +24,7 @@ async def update_user(user_id: Annotated[str, Path(description='Enter user_id', 
     return f"The user {user_id} has been updated"
 
 @app.delete('/user/{user_id}')
-async def delete_user
+async def delete_user(user_id: str) -> str:
     return f'User {user_id} has been deleted'
 
 
