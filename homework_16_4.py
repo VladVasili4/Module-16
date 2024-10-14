@@ -34,7 +34,7 @@ def update_user(id: int, username: str, age: int, user: User = Body()) -> User:
         raise HTTPException(status_code=404, detail="User was not found")
 
 @app.delete('/user/{id}')
-def delete_message(id: int, user: User ) -> User:
+def delete_user(id: int, user: User ) -> User:
     try:
         users.pop(id-1)
         return user
