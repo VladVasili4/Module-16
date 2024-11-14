@@ -1,6 +1,7 @@
 from fastapi import FastAPI, status, Body, HTTPException
 from pydantic import BaseModel
 from typing import List
+
 app = FastAPI()
 
 users = []
@@ -25,8 +26,8 @@ def create_user(username: str, age: int):
 @app.put('/user/{id}/{username}/{age}')
 async def update_user(id: int, username: str, age: int):
     try:
-        edit_user = users[id-1]
-        edit_user.username = username
+        edit_user = users[id-1]     # Нашли юзера по id-номеру
+        edit_user.username = username     # Обновили его данные
         edit_user.age = age
         return edit_user
     except IndexError:
@@ -35,8 +36,9 @@ async def update_user(id: int, username: str, age: int):
 @app.delete('/user/{id}')
 def delete_user(id: int): 
     try:
-        user = User()
-        users.pop(id-1)
+        user = users.pop(id - 1)
+        # user = User()
+        # users.pop(id-1)
         return user
     except IndexError:
         raise HTTPException(status_code=404, detail='User was not found')
